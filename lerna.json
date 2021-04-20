@@ -1,0 +1,12 @@
+{
+  "packages": ["apps/*", "libs/*"],
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "watch": {
+    "commands": {
+      "target": "dev",
+      "watch": "start"
+    }
+  }
+}
