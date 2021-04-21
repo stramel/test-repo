@@ -1,5 +1,19 @@
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+
 module.exports = {
   future: {
-    webpack5: false,
+    webpack5: true,
   },
-};
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    if (process.env.ANALYZE) {
+      config.plugins.push(
+        new BundleAnalyzerPlugin({
+          analyzerMode: 'server',
+          analyzerPort: isServer ? 8888 : 8889,
+          openAnalyzer: true,
+        }),
+      )
+    }
+    return config
+  },
+}
